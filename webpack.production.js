@@ -21,7 +21,7 @@ module.exports = {
   ],
   module: {
     loaders: [
-      { test: /\.js$/, loaders: ['babel'], exclude: /node_modules/ },
+      { test: /\.js$/, loaders: ['babel'], exclude: [/node_modules/,/learning/] },
       { test: /\.css$/, loader: ExtractTextPlugin.extract('css-loader?module!cssnext-loader') }
     ]
   },
