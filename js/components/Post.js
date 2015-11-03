@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import Icon from 'react-fa';
 import TagList from './TagList';
+import moment from 'moment';
 
 class Post extends Component {
   render() {
@@ -22,7 +23,7 @@ class Post extends Component {
             <div className="user">
               <a href={userUrl}>{`@${userId}`}</a>
             </div>
-            <div className="postedTime" title="投稿日: 2015/11/02 20:45:15">約15時間前</div>
+            <div className="postedTime" title={`投稿日: ${moment(post.created_at).format('YYYY/MM/DD HH/mm')}`}>{ moment(post.created_at).format('YYYY/MM/DD') }</div>
           </div>
           <div className="postHeading">
             <h1 className="title">
