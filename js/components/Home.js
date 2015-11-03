@@ -3,24 +3,25 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as HomeActions from '../actions/HomeActions';
 import styles from '../../css/app.css';
-import Post from './Post'
+import PostList from './PostList';
 
 @connect(state => ({
   posts: state.Posts.posts
 }))
 class Home extends Component {
+
+  componentDidMount() {
+    const {dispatch} = this.props;
+    HomeActions.fetchPosts(dispatch);
+  }
+
   render() {
-    const {title, dispatch} = this.props;
+    const {posts, dispatch} = this.props;
     const actions = bindActionCreators(HomeActions, dispatch);
     return (
       <main>
-        <h1 className={styles.text}>Welcome {title}!</h1>
-        <button onClick={e => actions.changeTitle(prompt())}>
-          Update Title
-        </button>
         <div className="posts">
-          <Post />
-          <Post />
+          <PostList posts={posts} />
         </div>
       </main>
     );
