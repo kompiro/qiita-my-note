@@ -48,7 +48,7 @@ module.exports = {
 
     "normalize": true,
     "print": true,
-    "glyphicons": true,
+    "glyphicons": false,
 
     "scaffolding": true,
     "type": true,

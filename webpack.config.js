@@ -29,7 +29,7 @@ module.exports = {
   module: {
     loaders: [
       { test: /\.js$/, loaders: ['react-hot', 'babel'], exclude: [/node_modules/,/lerning/] },
-      { test: /\.css$/, loader: ExtractTextPlugin.extract('css-loader?module!cssnext-loader') },
+      { test: /\.css$/, loader: ExtractTextPlugin.extract('css-loader!cssnext-loader') },
       { test: /bootstrap-sass\/assets\/javascripts\//, loader: 'imports?jQuery=jquery' },
       { test: /\.scss$/, loader: "style!css!sass?outputStyle=expanded" },
       { test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,   loader: "url?limit=10000&minetype=application/font-woff" },

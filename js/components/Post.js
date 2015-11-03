@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as HomeActions from '../actions/HomeActions';
 import styles from '../../css/app.css';
+import Icon from 'react-fa';
 
 class Post extends Component {
   render() {
@@ -30,8 +31,8 @@ class Post extends Component {
               <div className="tag"><a href="http://qiita.com/tags/redux" className="tagBase"><span className="tagName">redux</span></a></div>
             </div>
             <div className="stats">
-              <div className="comments"><i className="fa fa-fw fa-comments"></i>0</div>
-              <div className="likes"><i className="fa fa-fw fa-thumbs-up"></i>0</div>
+              <div className="comments"><Icon name="comments" /> 0</div>
+              <div className="likes"><Icon name="thumbs-up" /> 0</div>
             </div>
           </div>
         </div>
