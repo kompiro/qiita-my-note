@@ -5,6 +5,9 @@ import * as HomeActions from '../actions/HomeActions';
 import styles from '../../css/app.css';
 import Post from './Post'
 
+@connect(state => ({
+  posts: state.Posts.posts
+}))
 class Home extends Component {
   render() {
     const {title, dispatch} = this.props;
@@ -24,4 +27,4 @@ class Home extends Component {
   }
 }
 
-export default connect(state => state.Sample)(Home)
+export default Home
