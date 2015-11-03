@@ -1,3 +1,5 @@
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 module.exports = {
   // Use preBootstrapCustomizations to change $brand-primary. Ensure this preBootstrapCustomizations does not
   // depend on other bootstrap variables.
@@ -18,6 +20,7 @@ module.exports = {
   //     styleLoader: ExtractTextPlugin.extract("style-loader", "css-loader!sass-loader"),
   //   or if you want expanded CSS
   //     styleLoader: ExtractTextPlugin.extract("style-loader", "css-loader!sass?outputStyle=expanded"),
+  styleLoader: ExtractTextPlugin.extract("style-loader", "css-loader!sass?outputStyle=expanded"),
 
   // ### Scripts
   // Any scripts here set to false will never
