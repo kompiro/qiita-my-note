@@ -8,7 +8,7 @@ class TagList extends Component {
     const tagNodes = tags.map((tag)=>{
       let tagUrl = `${__QIITA_ENDPOINT}/${tag.name}`;
       return (
-        <div className="tag" key={tag.id}><a href={tagUrl} className="tagBase"><span className="tagName">{tag.name}</span></a></div>
+        <div className="tag" key={tag.name}><a href={tagUrl} className="tagBase"><span className="tagName">{tag.name}</span></a></div>
       )
     });
     return (
