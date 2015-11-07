@@ -6,9 +6,9 @@ import _ from 'lodash';
 Qiita.setEndpoint(__QIITA_ENDPOINT);
 Qiita.setToken(__QIITA_TOKEN);
 
-export function fetchPosts(dispatch) {
+export function fetchPosts(dispatch, displayCount) {
   Qiita.Resources.Item.list_items(
-      { per_page: 3}
+      { per_page: displayCount}
   ).then(response => {
     dispatch({
       type: POSTS_FETCHED,
