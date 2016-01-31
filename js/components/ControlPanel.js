@@ -21,7 +21,7 @@ export default class ControlPanel extends Component {
       <div className="controlPanel">
         <h4 className="title">ControlPanel</h4>
         <div className="form-group">
-          <input type="text" className="form-control" ref="displayCount"/>
+          <input type="number" placeholder="How many articles?" className="form-control" ref="displayCount"/>
         </div>
         <button className="fetch" onClick={e => this.handleFetch(e)}>Fetch</button>
       </div>

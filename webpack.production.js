@@ -24,7 +24,7 @@ module.exports = {
   ],
   module: {
     loaders: [
-      { test: /\.js$/, loaders: ['babel'], exclude: [/node_modules/,/learning/] },
+      { test: /\.js$/, loader: 'babel-loader', exclude: [/node_modules/,/learning/], query: { presets: ['es2015', 'react'] }},
       { test: /\.css$/, loader: ExtractTextPlugin.extract('css-loader!cssnext-loader') },
       { test: /bootstrap-sass\/assets\/javascripts\//, loader: 'imports?jQuery=jquery' },
       { test: /\.scss$/, loader: "style!css!sass?outputStyle=expanded" },

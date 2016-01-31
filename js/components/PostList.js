@@ -5,7 +5,8 @@ import Post from './Post';
 
 class PostList extends Component {
   render() {
-    var postNodes = this.props.posts.map((post)=>{
+    const {posts} = this.props.posts;
+    var postNodes = posts.map((post)=>{
       return (
         <Post post={post} key={post.id}/>
       )

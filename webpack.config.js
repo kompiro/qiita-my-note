@@ -5,6 +5,7 @@ var devFlagPlugin = new webpack.DefinePlugin({
   __DEV__: JSON.stringify(JSON.parse(process.env.DEBUG || 'false')),
   __QIITA_TOKEN: JSON.stringify(process.env.QIITA_TOKEN),
   __QIITA_ENDPOINT: JSON.stringify(process.env.QIITA_ENDPOINT),
+  NODE_ENV: 'development',
 });
 
 module.exports = {
@@ -28,7 +29,14 @@ module.exports = {
   ],
   module: {
     loaders: [
-      { test: /\.js$/, loaders: ['react-hot', 'babel'], exclude: [/node_modules/,/lerning/] },
+      { test: /\.js$/,
+        loader: 'babel-loader',
+        exclude: [/node_modules/,/lerning/],
+        query: {
+          cacheDirectory: true,
+          plugins: ['transform-decorators-legacy' ],
+          presets: ['es2015', 'stage-1', 'react']}
+      },
       { test: /\.css$/, loader: ExtractTextPlugin.extract('css-loader!cssnext-loader') },
       { test: /bootstrap-sass\/assets\/javascripts\//, loader: 'imports?jQuery=jquery' },
       { test: /\.scss$/, loader: "style!css!sass?outputStyle=expanded" },

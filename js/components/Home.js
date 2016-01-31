@@ -7,17 +7,17 @@ import PostList from './PostList';
 import ControlPanel from './ControlPanel';
 
 @connect(state => ({
-  posts: state.Posts.posts
+  posts: state.posts
 }))
 class Home extends Component {
   render() {
     const {posts, dispatch} = this.props;
     const actions = bindActionCreators(HomeActions, dispatch);
     return (
-      <main>
+      <div>
         <PostList posts={posts}/>
         <ControlPanel/>
-      </main>
+      </div>
     );
   }
 }

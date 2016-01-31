@@ -41,4 +41,4 @@ class Post extends Component {
   }
 }
 
-export default connect(state => state.Sample)(Post)
+export default connect(state => state.posts)(Post)

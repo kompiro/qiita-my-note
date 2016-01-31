@@ -1,2 +1,8 @@
-export {default as Sample} from './Sample';
-export {default as Posts} from './Posts';
+import { combineReducers } from 'redux';
+import posts from './Posts';
+
+const rootReducer = combineReducers({
+   posts
+});
+
+export default rootReducer;

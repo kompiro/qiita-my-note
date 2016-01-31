@@ -4,7 +4,7 @@ let defaultState = {
   posts: []
 };
 
-export default function(state = defaultState, action) {
+export default function posts(state = defaultState, action) {
   switch (action.type) {
     case ActionTypes.POSTS_FETCHED:
       return {...state, posts: action.posts};
