@@ -28,10 +28,14 @@ for(var i = 0; i < last_page + 1; i++){
   promises.push(promise);
 }
 
+console.info('start to fetching...');
 Promise.all(promises).then((all_items)=>{
   _.each(all_items,(items)=>{
     _.each(items,(item)=>{
       console.log(item.title);
     });
   });
+  console.info('-- END --');
 });
+
+
