@@ -6,13 +6,33 @@ import _ from 'lodash';
 Qiita.setEndpoint(__QIITA_ENDPOINT);
 Qiita.setToken(__QIITA_TOKEN);
 
+const req = indexedDB.open('qiita_my_note',4);
+req.addEventListener("upgradeneeded", event => {
+  const db = event.target.result;
+  if (db.objectStoreNames.contains('posts')) {
+    db.deleteObjectStore('posts');
+  }
+  db.createObjectStore('posts', {keyPath: "created_at"});
+});
+
 export function fetchPosts(dispatch, displayCount) {
   Qiita.Resources.Item.list_items(
       { per_page: displayCount}
   ).then(response => {
-    dispatch({
-      type: POSTS_FETCHED,
-      posts: response
+    const req = indexedDB.open('qiita_my_note',4);
+    req.addEventListener("success", event => {
+      const db = event.target.result;
+      const tx = db.transaction(['posts'],'readwrite');
+      const store = tx.objectStore('posts');
+      response.map(post => {
+        store.put(post);
+      });
+      tx.addEventListener("complete", event =>{
+        dispatch({
+          type: POSTS_FETCHED,
+          posts: response
+        });
+      });
     });
   });
 }
