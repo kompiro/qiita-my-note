@@ -4,11 +4,19 @@ import configureStore from './store/configureStore';
 import App from './containers/App';
 
 const req = indexedDB.open('qiita_my_note',4);
+req.addEventListener("upgradeneeded", event => {
+  const db = event.target.result;
+  if (db.objectStoreNames.contains('posts')) {
+    db.deleteObjectStore('posts');
+  }
+  db.createObjectStore('posts', {keyPath: "created_at"});
+});
+
 req.addEventListener("success", event => {
   const db = event.target.result;
   const tx = db.transaction(['posts'],'readwrite');
   const store = tx.objectStore('posts');
-  const curReq = store.openCursor(null, IDBCursor.NEXT);
+  const curReq = store.openCursor(null);
   const posts = [];
   curReq.addEventListener('success', event => {
     var cursor = event.target.result;

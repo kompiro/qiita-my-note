@@ -7,14 +7,6 @@ Qiita.setEndpoint(__QIITA_ENDPOINT);
 Qiita.setToken(__QIITA_TOKEN);
 
 const req = indexedDB.open('qiita_my_note',4);
-req.addEventListener("upgradeneeded", event => {
-  const db = event.target.result;
-  if (db.objectStoreNames.contains('posts')) {
-    db.deleteObjectStore('posts');
-  }
-  db.createObjectStore('posts', {keyPath: "created_at"});
-});
-
 export function fetchPosts(dispatch, displayCount) {
   Qiita.Resources.Item.list_items(
       { per_page: displayCount}
