@@ -6,17 +6,18 @@ import _ from 'lodash';
 Qiita.setEndpoint(__QIITA_ENDPOINT);
 Qiita.setToken(__QIITA_TOKEN);
 
-const req = indexedDB.open('qiita_my_note',4);
 export function fetchPosts(dispatch, displayCount) {
   Qiita.Resources.Item.list_items(
       { per_page: displayCount}
   ).then(response => {
-    const req = indexedDB.open('qiita_my_note',4);
+    const req = indexedDB.open('qiita_my_note',5);
     req.addEventListener("success", event => {
       const db = event.target.result;
       const tx = db.transaction(['posts'],'readwrite');
       const store = tx.objectStore('posts');
       response.map(post => {
+        const created_at_date = new Date(post.created_at).getTime();
+        Object.assign(post, {'created_at_date' : created_at_date});
         store.put(post);
       });
       tx.addEventListener("complete", event =>{
