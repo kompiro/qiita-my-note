@@ -12,30 +12,36 @@ req.addEventListener('upgradeneeded', event => {
   db.createObjectStore('posts', {keyPath: 'created_at_date'});
 });
 
-req.addEventListener('success', event => {
-  const db = event.target.result;
-  const tx = db.transaction(['posts'], 'readwrite');
-  const store = tx.objectStore('posts');
-  const curReq = store.openCursor(null, 'prev');
-  const posts = [];
-  curReq.addEventListener('success', event => {
-    var cursor = event.target.result;
-    if(cursor){
+const iterateDB = posts => {
+  return event => {
+    const cursor = event.target.result;
+    if (cursor) {
       posts.push(cursor.value);
       cursor.continue();
     } else {
       const initialData = {
-        posts : {
-          posts : posts
-        }
-      }
+        posts: {
+          posts: posts,
+        },
+      };
       const store = configureStore(initialData);
       render(
         <App store={store}/>,
         document.getElementById('main')
       );
     }
-  });
-});
+  };
+};
+
+const connected = event => {
+  const db = event.target.result;
+  const tx = db.transaction(['posts'], 'readwrite');
+  const store = tx.objectStore('posts');
+  const curReq = store.openCursor(null, 'prev');
+  const posts = [];
+  curReq.addEventListener('success', iterateDB(posts));
+};
+
+req.addEventListener('success', connected);
 
 
