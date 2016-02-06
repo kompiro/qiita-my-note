@@ -24,6 +24,7 @@
     "spread": true,
     "superInFunctions": true,
     "templateStrings": true,
+    "modules": true,
     "jsx": true
   },
   "rules": {
