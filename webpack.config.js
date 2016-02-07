@@ -37,6 +37,10 @@ module.exports = {
           plugins: ['transform-decorators-legacy' ],
           presets: ['es2015', 'stage-1', 'react']}
       },
+      { test: /\.js$/,
+        loader: 'eslint-loader',
+        exclude: [/node_modules/,/lerning/],
+      },
       { test: /\.css$/, loader: ExtractTextPlugin.extract('css-loader!cssnext-loader') },
       { test: /bootstrap-sass\/assets\/javascripts\//, loader: 'imports?jQuery=jquery' },
       { test: /\.scss$/, loader: "style!css!sass?outputStyle=expanded" },
