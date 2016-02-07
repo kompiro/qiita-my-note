@@ -3,7 +3,8 @@ import {Provider} from 'react-redux';
 import Home from '../components/Home';
 import DevTools from './DevTools';
 
-export default class App extends Component {
+class App extends Component {
+
   render() {
     const {store} = this.props;
     if (process.env.NODE_ENV === 'production') {
@@ -16,19 +17,24 @@ export default class App extends Component {
           </Provider>
         </div>
       );
-    } else {
-      console.warn('development mode');
-      return (
-        <div>
-          {/* <Home /> is your app entry point */}
-          <Provider store={store}>
-            <div>
-              <Home />
-              <DevTools />
-            </div>
-          </Provider>
-        </div>
-      );
     }
+    console.warn('development mode');
+    return (
+      <div>
+        {/* <Home /> is your app entry point */}
+        <Provider store={store}>
+          <div>
+            <Home />
+            <DevTools />
+          </div>
+        </Provider>
+      </div>
+    );
   }
 }
+
+App.propTypes = {
+  store: React.PropTypes.object,
+};
+
+export default App;
