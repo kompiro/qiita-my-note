@@ -8,7 +8,9 @@ class App extends Component {
   render() {
     const {store} = this.props;
     if (process.env.NODE_ENV === 'production') {
+      /* eslint-disable no-console */
       console.info('production mode');
+      /* eslint-enable no-console */
       return (
         <div>
           <Provider store={store}>
@@ -18,7 +20,9 @@ class App extends Component {
         </div>
       );
     }
+    /* eslint-disable no-console */
     console.warn('development mode');
+    /* eslint-enable no-console */
     return (
       <div>
         {/* <Home /> is your app entry point */}
