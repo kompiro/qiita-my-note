@@ -4,4 +4,8 @@
     -     id: check-json
     -     id: check-yaml
     -     id: check-merge-conflict
+-   repo: git://github.com/pre-commit/mirrors-eslint
+    sha: v1.9.0
+    hooks:
+    -   id: eslint
 
