@@ -1,5 +1,4 @@
 import {TITLE_CHANGED, POSTS_FETCHED} from '../constants/ActionTypes';
-import 'isomorphic-fetch';
 import Qiita from 'qiita-js';
 
 Qiita.setEndpoint(__QIITA_ENDPOINT);

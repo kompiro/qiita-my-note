@@ -19,7 +19,7 @@ class Home extends Component {
 }
 
 Home.propTypes = {
-  posts: React.PropTypes.array,
+  posts: React.PropTypes.object,
   dispatch: React.PropTypes.func,
 };
 

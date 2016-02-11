@@ -41,7 +41,7 @@ class Post extends Component {
 }
 
 Post.propTypes = {
-  post: React.PropTypes.array,
+  post: React.PropTypes.object,
 };
 
 export default connect(state => state.posts)(Post);

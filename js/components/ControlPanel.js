@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import * as HomeActions from '../actions/HomeActions';
 
 class ControlPanel extends Component {
@@ -28,7 +29,7 @@ class ControlPanel extends Component {
 }
 
 ControlPanel.propTypes = {
-  dispatch: React.PropTypes.object,
+  dispatch: React.PropTypes.func,
 };
 
-export default ControlPanel;
+export default connect()(ControlPanel);
