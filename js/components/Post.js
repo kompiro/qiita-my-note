@@ -1,16 +1,15 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
 import Icon from 'react-fa';
 import TagList from './TagList';
 import moment from 'moment';
 
 class Post extends Component {
   render() {
-    const {post, dispatch} = this.props;
-    var user = post.user;
-    var userId = user.id;
-    var userUrl = `${__QIITA_ENDPOINT}/${userId}`;
+    const {post} = this.props;
+    const user = post.user;
+    const userId = user.id;
+    const userUrl = `${__QIITA_ENDPOINT}/${userId}`;
     return (
       <article className="post">
         <div className="userIcon">
@@ -41,4 +40,8 @@ class Post extends Component {
   }
 }
 
-export default connect(state => state.posts)(Post)
+Post.propTypes = {
+  post: React.PropTypes.array,
+};
+
+export default connect(state => state.posts)(Post);

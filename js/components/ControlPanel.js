@@ -1,20 +1,7 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
 import * as HomeActions from '../actions/HomeActions';
-import {bindActionCreators} from 'redux';
 
-@connect(state => ({}))
-export default class ControlPanel extends Component {
-
-  constructor(props, context) {
-    super(props, context);
-  }
-
-  handleFetch(e) {
-    const {dispatch} = this.props;
-    let displayCount = this.refs.displayCount.value;
-    HomeActions.fetchPosts(dispatch, displayCount);
-  }
+class ControlPanel extends Component {
 
   render() {
     return (
@@ -25,6 +12,23 @@ export default class ControlPanel extends Component {
         </div>
         <button className="fetch" onClick={e => this.handleFetch(e)}>Fetch</button>
       </div>
-    )
+    );
   }
+
+  handleFetch() {
+    const {dispatch} = this.props;
+    const displayCount = this.refs.displayCount.value;
+    HomeActions.fetchPosts(dispatch, displayCount);
+  }
+
+  constructor(props, context) {
+    super(props, context);
+  }
+
 }
+
+ControlPanel.propTypes = {
+  dispatch: React.PropTypes.object,
+};
+
+export default ControlPanel;
