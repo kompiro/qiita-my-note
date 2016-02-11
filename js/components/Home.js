@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import * as HomeActions from '../actions/HomeActions';
 import PostList from './PostList';
 import ControlPanel from './ControlPanel';
 
@@ -10,7 +8,7 @@ import ControlPanel from './ControlPanel';
 }))
 class Home extends Component {
   render() {
-    const {posts, dispatch} = this.props;
+    const {posts} = this.props;
     return (
       <div>
         <PostList posts={posts}/>
