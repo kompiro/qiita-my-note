@@ -2,7 +2,7 @@
   "name": "qiita-my-note",
   "version": "0.1.0",
   "scripts": {
-    "lint": "eslint js/index.js",
+    "lint": "eslint",
     "start": "NODE_ENV=development DEBUG=true node server.js",
     "build": "webpack -p --config webpack.production.js",
     "build-dev": "webpack -p"
