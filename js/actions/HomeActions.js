@@ -1,7 +1,6 @@
-import {TITLE_CHANGED,POSTS_FETCHED} from '../constants/ActionTypes';
+import {TITLE_CHANGED, POSTS_FETCHED} from '../constants/ActionTypes';
 import 'isomorphic-fetch';
 import Qiita from 'qiita-js';
-import _ from 'lodash';
 
 Qiita.setEndpoint(__QIITA_ENDPOINT);
 Qiita.setToken(__QIITA_TOKEN);
@@ -10,20 +9,20 @@ export function fetchPosts(dispatch, displayCount) {
   Qiita.Resources.Item.list_items(
       { per_page: displayCount}
   ).then(response => {
-    const req = indexedDB.open('qiita_my_note',5);
-    req.addEventListener("success", event => {
+    const req = indexedDB.open('qiita_my_note', 5);
+    req.addEventListener('success', event => {
       const db = event.target.result;
-      const tx = db.transaction(['posts'],'readwrite');
+      const tx = db.transaction(['posts'], 'readwrite');
       const store = tx.objectStore('posts');
       response.map(post => {
-        const created_at_date = new Date(post.created_at).getTime();
-        Object.assign(post, {'created_at_date' : created_at_date});
+        const createdAt = new Date(post.created_at).getTime();
+        Object.assign(post, {created_at_date: createdAt});
         store.put(post);
       });
-      tx.addEventListener("complete", event =>{
+      tx.addEventListener('complete', () =>{
         dispatch({
           type: POSTS_FETCHED,
-          posts: response
+          posts: response,
         });
       });
     });
@@ -33,6 +32,6 @@ export function fetchPosts(dispatch, displayCount) {
 export function changeTitle(text) {
   return {
     type: TITLE_CHANGED,
-    text
-  }
+    text,
+  };
 }
