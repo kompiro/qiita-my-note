@@ -16,9 +16,10 @@
 # Uncomment the following lines to make the configuration take effect.
 
 PreCommit:
-#  EsLint:
-#    enabled: true
-#    on_warn: fail # Treat all warnings as failures
+  EsLint:
+    command: ['npm','run','lint','--']
+    enabled: true
+    on_warn: fail # Treat all warnings as failures
 #
 #  TrailingWhitespace:
 #    exclude:
